@@ -62,10 +62,15 @@ rules. The differences are intentional:
 Everything else is fixed: the tables are aligned, the spelling is checked,
 and the contents matches the headings.
 
-`awesome-lint` reads the file from the GitHub URL it is given, not from the
-working tree, so it has to be run against a pushed branch:
+`awesome-lint` takes either the repository URL, which it clones, or a file in
+the working tree. It rejects a `<repo-url>/tree/<branch>` argument, so an
+unpushed branch is linted from the file:
 
 ```bash
-npx awesome-lint <repo-url>/tree/<branch>
+npx awesome-lint README.md                                # working tree
+npx awesome-lint https://github.com/OWNER/REPO            # default branch
 ```
+
+It reports the deviations in the table above as errors. Read the output against
+that table; anything else is a real problem.
 

@@ -97,7 +97,11 @@ def main() -> int:
         if ".git" in target.parts or not target.exists():
             continue
         if process(target):
-            print(f"aligned {target.relative_to(ROOT) if target.is_absolute() else target}")
+            try:
+                name = target.resolve().relative_to(ROOT)
+            except ValueError:
+                name = target
+            print(f"aligned {name}")
     return 0
 
 
